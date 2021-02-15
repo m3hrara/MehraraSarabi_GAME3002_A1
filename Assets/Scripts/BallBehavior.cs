@@ -14,13 +14,16 @@ public class BallBehavior : MonoBehaviour
     Vector3 initialVelocity;
     [SerializeField]
     private float angle;
+    [SerializeField]
+    private Transform ballSpawn;
 
-    public BallPool ballPool;
-
+    private int tries = 0;
+    private bool isGrounded = true;
     // Start is called before the first frame update
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
+        transform.position = ballSpawn.position;
     }
 
     // Update is called once per frame
@@ -28,9 +31,14 @@ public class BallBehavior : MonoBehaviour
     {
         angle = Mathf.Acos(Vector3.Dot(followCamera.transform.forward, Vector3.right) / (followCamera.transform.forward.magnitude) * (Vector3.right.magnitude));
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && isGrounded)
         {
             LaunchBall();
+            isGrounded = false;
+        }
+        if (tries == 5)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
         }
         CheckBounds();
     }
@@ -56,9 +64,12 @@ public class BallBehavior : MonoBehaviour
     }
     private void CheckBounds()
     {
-        if (Vector3.Distance(transform.position, Vector3.zero) > 80)
+        if (Vector3.Distance(transform.position, ballSpawn.position) > 120 && tries < 5)
         {
-            ballPool.ReturnBall(this.gameObject);
+            transform.position = ballSpawn.position;
+            m_rigidbody.velocity = Vector3.zero;
+            isGrounded = true;
+            tries++;
         }
     }
 }

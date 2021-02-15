@@ -15,16 +15,13 @@ public class CameraBehavior : MonoBehaviour
     public Vector2 targetDirection;
     public Vector2 targetCharacterDirection;
     public GameObject ball;
-    public BallPool ballPool;
-    public Transform ballSpawn;
+
     // Assign this if there's a parent object controlling motion, such as a Character Controller.
     // Yaw rotation will affect this object instead of the camera if set.
     public GameObject characterBody;
 
     void Start()
     {
-        var tempBullet = ballPool.GetBall(ballSpawn.position);
-        tempBullet.transform.SetParent(ballPool.gameObject.transform);
 
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
