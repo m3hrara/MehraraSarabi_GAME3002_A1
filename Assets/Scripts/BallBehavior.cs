@@ -8,17 +8,17 @@ public class BallBehavior : MonoBehaviour
     private GameObject followCamera;
     [SerializeField]
     private float velocity;
-
-    private Rigidbody m_rigidbody;
-    [SerializeField]
-    Vector3 initialVelocity;
     [SerializeField]
     private float angle;
     [SerializeField]
     private Transform ballSpawn;
 
+    private Rigidbody m_rigidbody;
+    Vector3 initialVelocity;
     private int tries = 0;
     private bool isGrounded = true;
+
+    private int frameCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,7 @@ public class BallBehavior : MonoBehaviour
     {
         angle = Mathf.Acos(Vector3.Dot(followCamera.transform.forward, Vector3.right) / (followCamera.transform.forward.magnitude) * (Vector3.right.magnitude));
 
-        if (Input.GetMouseButtonUp(0) && isGrounded)
+        if (Input.GetMouseButtonUp(1) && isGrounded && tries < 5)
         {
             LaunchBall();
             isGrounded = false;
@@ -41,6 +41,7 @@ public class BallBehavior : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
         }
         CheckBounds();
+        print(frameCounter);
     }
     void LaunchBall()
     {
@@ -51,7 +52,7 @@ public class BallBehavior : MonoBehaviour
        
         // vx, vy
         initialVelocity.x = velocity * Mathf.Cos(angle);
-        initialVelocity.y = velocity * Mathf.Sin(angle);
+        initialVelocity.y = velocity * Mathf.Sin(angle) * 0.65f;
         initialVelocity.z = velocity * Mathf.Sin(angle);
 
         m_rigidbody.velocity = initialVelocity;
@@ -64,12 +65,17 @@ public class BallBehavior : MonoBehaviour
     }
     private void CheckBounds()
     {
-        if (Vector3.Distance(transform.position, ballSpawn.position) > 120 && tries < 5)
+        if (Vector3.Distance(transform.position, ballSpawn.position) > 100 && tries < 5)
+        {
+            frameCounter++;
+        }
+        if (frameCounter >= 30 && tries < 5)
         {
             transform.position = ballSpawn.position;
             m_rigidbody.velocity = Vector3.zero;
             isGrounded = true;
             tries++;
+            frameCounter = 0;
         }
     }
 }
