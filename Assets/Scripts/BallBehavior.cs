@@ -12,7 +12,7 @@ public class BallBehavior : MonoBehaviour
     private float angle;
     [SerializeField]
     private Transform ballSpawn;
-
+    
     private Rigidbody m_rigidbody;
     Vector3 initialVelocity;
     private int tries = 0;
@@ -40,8 +40,6 @@ public class BallBehavior : MonoBehaviour
         {
             GetComponent<MeshRenderer>().enabled = false;
         }
-        CheckBounds();
-        print(tries);
     }
     void LaunchBall()
     {
@@ -52,10 +50,15 @@ public class BallBehavior : MonoBehaviour
        
         // vx, vy
         initialVelocity.x = velocity * Mathf.Cos(angle);
-        initialVelocity.y = velocity * Mathf.Sin(angle) * 0.65f;
+        initialVelocity.y = velocity * Mathf.Sin(angle) * 0.5f;
         initialVelocity.z = velocity * Mathf.Sin(angle);
 
         m_rigidbody.velocity = initialVelocity;
+    }
+    void FixedUpdate()
+    {
+        CheckBounds();
+
     }
     void OnDrawGizmos()
     {
@@ -69,7 +72,7 @@ public class BallBehavior : MonoBehaviour
         {
             frameCounter++;
         }
-        if (frameCounter >= 400)
+        if (frameCounter >= 280)
         {
             transform.position = ballSpawn.position;
             m_rigidbody.velocity = Vector3.zero;

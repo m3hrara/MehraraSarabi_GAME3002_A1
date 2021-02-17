@@ -391,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798309523}
   m_LocalRotation: {x: -0.000000081460335, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.004096043, y: 0, z: 0.7118013}
+  m_LocalPosition: {x: -0.004096043, y: 0, z: 2.52}
   m_LocalScale: {x: 1.2094754, y: 0.8487434, z: 5.037077}
   m_Children: []
   m_Father: {fileID: 1578821291}
@@ -966,6 +966,30 @@ PrefabInstance:
       propertyPath: followCamera
       value: 
       objectReference: {fileID: 963194225}
+    - target: {fileID: 6270490069007807174, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
+      propertyPath: m_vTargetPos.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270490069007807174, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
+      propertyPath: m_vTargetPos.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270490069007807174, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
+      propertyPath: m_vTargetPos.z
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270490069007807174, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
+      propertyPath: m_vInitialVel.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270490069007807174, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
+      propertyPath: m_vInitialVel.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270490069007807174, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
+      propertyPath: m_vInitialVel.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6270490069007807196, guid: ed1ae9cda6bc1504c9ff8a31027dcbc6, type: 3}
       propertyPath: m_Name
       value: Ball

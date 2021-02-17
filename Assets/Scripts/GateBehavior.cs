@@ -33,18 +33,18 @@ public class GateBehavior : MonoBehaviour
         }
         else if (scoreSystem ==1)
         {
-            speed = 5.0f;
+            speed = 2.0f;
         }
         else if (scoreSystem == 2)
         {
-            speed = 8.0f;
+            speed = 3.0f;
         }
         else
         {
-            speed = 12.0f;
+            speed = 4.0f;
         }
 
-        if (transform.position.x > 20.0 || transform.position.x < -20.0)
+        if (transform.position.x > 22.0 || transform.position.x < -22.0)
         {
             movingFactor *= -1.0f;
         }
