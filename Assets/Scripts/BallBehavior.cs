@@ -41,7 +41,7 @@ public class BallBehavior : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
         }
         CheckBounds();
-        print(frameCounter);
+        print(tries);
     }
     void LaunchBall()
     {
@@ -65,11 +65,11 @@ public class BallBehavior : MonoBehaviour
     }
     private void CheckBounds()
     {
-        if (Vector3.Distance(transform.position, ballSpawn.position) > 100 && tries < 5)
+        if (!isGrounded)
         {
             frameCounter++;
         }
-        if (frameCounter >= 30 && tries < 5)
+        if (frameCounter >= 400)
         {
             transform.position = ballSpawn.position;
             m_rigidbody.velocity = Vector3.zero;
