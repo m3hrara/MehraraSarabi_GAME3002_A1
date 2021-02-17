@@ -7,7 +7,7 @@ public class GateBehavior : MonoBehaviour
     private int scoreSystem;
     private Vector3 pos;
     private float speed;
-    private float movingFactor;
+    private float movingFactor; // direction, left/right
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class GateBehavior : MonoBehaviour
 
         // score 0 -> no movement
         // score 1 or 2 -> slow movement
-        // score more than 2 -> fast movement
+        // score more than 2+ -> fast movement
 
 
         if (scoreSystem == 0 )
